@@ -111,17 +111,19 @@ Recruiter Dashboard
 
 ## 📊 Dashboard
 
-The application provides a modern dashboard containing:
+ResumeJobMatchAI provides an intuitive dashboard that gives users a clear overview of resume-to-job compatibility.
 
-* Overall Match Score
-* Required Skill Score
-* Preferred Skill Score
-* Skill Gap Count
-* Match Score Charts
-* Matched Skills
-* Missing Skills
-* AI Career Coach
-* Candidate Ranking
+### Key Insights
+
+- 🎯 Overall Match Score
+- 🧠 Required Skills Score
+- ⭐ Preferred Skills Score
+- ⚠️ Skill Gap Analysis
+- 📈 Interactive Match Score Charts
+- ✅ Matched Skills
+- ❌ Missing Skills
+- 🤖 AI Career Coach Recommendations
+- 🏆 Candidate Ranking for Recruiters
 
 ---
 
@@ -129,15 +131,23 @@ The application provides a modern dashboard containing:
 
 ### 🏠 Home Page
 
+The home page allows users to choose between **Job Seeker** and **Recruiter** modes.
+
 ![ResumeJobMatchAI Home Page](screenshots/home.png)
 
 ### 👤 Job Seeker Mode
+
+Job seekers can upload their resume and job description to receive a detailed match analysis, skill-gap insights, and AI-powered recommendations.
 
 ![Job Seeker Analysis](screenshots/job-seeker.png)
 
 ### 🏢 Recruiter Mode
 
+Recruiters can upload a job description and multiple candidate resumes to automatically compare candidates and generate a ranked shortlist.
+
 ![Recruiter Candidate Ranking](screenshots/recruiter.png)
+
+---
 ## 🚀 Installation
 
 ### 1. Clone the repository
