@@ -22,24 +22,16 @@ def detect_resume_skills(resume_text):
 
 
 def extract_job_skills_with_llm(job_text):
-    """Extract required and preferred skills using Gemini."""
+    """Extract required and preferred skills using Ollama."""
 
     llm = create_llm()
 
     prompt = f"""
-You are an expert technical recruiter.
-
-Analyze the following job description and extract the technical skills.
-
-Separate the skills into:
-1. Required skills
-2. Preferred skills
+Extract technical skills from the following job description.
 
 Return ONLY valid JSON.
-Do not include explanations.
-Do not use Markdown code fences.
 
-Use exactly this format:
+Required format:
 
 {{
     "required_skills": [],
@@ -56,9 +48,9 @@ Job Description:
     if hasattr(response, "content"):
         response = response.content
 
-    response = str(response).strip()
+    response = response.strip()
 
-    # Remove Markdown code fences if Gemini adds them
+    # Remove possible markdown code fences
     response = response.replace("```json", "")
     response = response.replace("```", "")
     response = response.strip()
@@ -68,22 +60,16 @@ Job Description:
 
     except json.JSONDecodeError:
 
-        # Try to extract JSON from additional Gemini text
         start = response.find("{")
         end = response.rfind("}") + 1
 
         if start != -1 and end > start:
-
-            try:
-                return json.loads(
-                    response[start:end]
-                )
-
-            except json.JSONDecodeError:
-                pass
+            return json.loads(
+                response[start:end]
+            )
 
         raise ValueError(
-            "Could not parse job skills from Gemini response."
+            "Could not parse job skills from Ollama response."
         )
 
 
@@ -120,7 +106,7 @@ def calculate_match(
         else 0
     )
 
-    # Required skills are more important than preferred skills
+    # Current weighting
     final_score = (
         required_score * 0.70
         + preferred_score * 0.20
@@ -130,10 +116,8 @@ def calculate_match(
         "final_score": round(final_score, 2),
         "required_score": round(required_score, 2),
         "preferred_score": round(preferred_score, 2),
-
         "required_matched": required_matched,
         "required_missing": required_missing,
-
         "preferred_matched": preferred_matched,
         "preferred_missing": preferred_missing,
     }
@@ -145,7 +129,7 @@ def generate_recommendations(
     matched_skills,
     match_score
 ):
-    """Generate AI-powered improvement recommendations using Gemini."""
+    """Generate AI-powered improvement recommendations."""
 
     llm = create_llm()
 
@@ -158,13 +142,13 @@ Match Score:
 {match_score}%
 
 Matched Skills:
-{", ".join(matched_skills) if matched_skills else "None"}
+{", ".join(matched_skills)}
 
 Missing Required Skills:
-{", ".join(missing_required) if missing_required else "None"}
+{", ".join(missing_required)}
 
 Missing Preferred Skills:
-{", ".join(missing_preferred) if missing_preferred else "None"}
+{", ".join(missing_preferred)}
 
 Give concise and practical recommendations.
 
@@ -221,7 +205,7 @@ def analyze(resume_path, job_path):
         for document in job_documents
     )
 
-    print("Extracting job skills using Gemini...")
+    print("Extracting job skills using Ollama...")
 
     job_data = extract_job_skills_with_llm(
         job_text
@@ -237,16 +221,6 @@ def analyze(resume_path, job_path):
         []
     )
 
-    print(
-        f"Required skills found: "
-        f"{len(required_skills)}"
-    )
-
-    print(
-        f"Preferred skills found: "
-        f"{len(preferred_skills)}"
-    )
-
     print("Calculating match score...")
 
     result = calculate_match(
@@ -255,7 +229,7 @@ def analyze(resume_path, job_path):
         resume_skills
     )
 
-    # Combine matched required + preferred skills
+    # Combine matched required + preferred
     matched_skills = (
         result["required_matched"]
         + result["preferred_matched"]
@@ -271,11 +245,8 @@ def analyze(resume_path, job_path):
     )
 
     result["resume_skills"] = resume_skills
-
     result["required_skills"] = required_skills
-
     result["preferred_skills"] = preferred_skills
-
     result["recommendations"] = recommendations
 
     return result
@@ -283,15 +254,11 @@ def analyze(resume_path, job_path):
 
 if __name__ == "__main__":
 
-    resume_path = (
-        r"C:\DATASCIENCE\MYPROJECTS\ResumeJobMatchAI"
-        r"\data\resume\Shemin_TS..pdf"
-    )
+    # CHANGE THESE TO YOUR ACTUAL PDF FILENAMES
 
-    job_path = (
-        r"C:\DATASCIENCE\MYPROJECTS\ResumeJobMatchAI"
-        r"\data\jobs\AI_Engineer_Job.pdf.pdf"
-    )
+    resume_path = r"C:\DATASCIENCE\MYPROJECTS\ResumeJobMatchAI\data\resume\Shemin_TS..pdf"
+
+    job_path = r"C:\DATASCIENCE\MYPROJECTS\ResumeJobMatchAI\data\jobs\AI_Engineer_Job.pdf.pdf"
 
     result = analyze(
         resume_path,
