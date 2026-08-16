@@ -1,354 +1,266 @@
-\# 🤖 ResumeJobMatchAI
+# 🤖 ResumeJobMatchAI
 
+### AI-Powered Resume ↔ Job Matching & Candidate Ranking System
 
+ResumeJobMatchAI is an AI-powered application that analyzes resumes against job descriptions and provides an intelligent **job-match score, skill-gap analysis, personalized recommendations, and candidate ranking**.
 
-An AI-powered Resume ↔ Job Matching application that analyzes a candidate's resume against a job description and provides an intelligent match score, skill analysis, and career recommendations.
+The application supports two modes:
 
+* 👤 **Job Seeker Mode** — Analyze how well your resume matches a specific job.
+* 🏢 **Recruiter Mode** — Compare and rank multiple candidates against a job description.
 
+---
 
-\## 🚀 Features
+## ✨ Features
 
+### 👤 Job Seeker Mode
 
+* Upload your resume as a PDF
+* Upload a job description PDF
+* Paste a job description directly from LinkedIn, Naukri, or a careers page
+* Calculate an overall job-match score
+* Analyze required skills
+* Analyze preferred skills
+* Identify matched skills
+* Identify missing skills
+* Display visual match charts
+* Generate AI-powered career recommendations
+* View detected resume skills
 
-\* 📄 Upload and analyze resumes
+### 🏢 Recruiter Mode
 
-\* 💼 Upload job descriptions
+* Upload a job description
+* Paste a job description as text
+* Upload multiple candidate resumes
+* Analyze candidates against the target role
+* Calculate candidate match scores
+* Rank candidates automatically
+* Display candidate comparison charts
+* Identify strong, good, moderate, and low matches
 
-\* 🎯 Calculate Resume–Job Match Score
+---
 
-\* ✅ Identify matched skills
-
-\* ❌ Identify missing skills
-
-\* 📊 Analyze candidate strengths and skill gaps
-
-\* 🤖 AI-powered career recommendations
-
-\* 🧠 RAG-based document processing
-
-\* 🔎 Semantic search using embeddings
-
-\* 💾 Vector storage using ChromaDB / FAISS
-
-\* 🏆 Candidate/job matching analysis
-
-\* 🌐 Interactive Streamlit interface
-
-
-
-\## 🧠 How It Works
-
-
+## 🧠 How It Works
 
 ```text
+                 Resume PDF
+                     │
+                     ▼
+              PDF Text Extraction
+                     │
+                     ▼
+               Text Processing
+                     │
+                     ▼
+                Skill Analysis
+                     │
+                     ▼
+Job Description ──► Matching Engine
+                     │
+                     ▼
+              Match Score
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+    Skill Gap Analysis     AI Recommendations
+          │                     │
+          └──────────┬──────────┘
+                     ▼
+              Streamlit Dashboard
+```
 
-Resume PDF
+For recruiter mode:
 
-&#x20;    ↓
-
-Document Loading
-
-&#x20;    ↓
-
-Text Extraction
-
-&#x20;    ↓
-
-Text Chunking
-
-&#x20;    ↓
-
-Embeddings
-
-&#x20;    ↓
-
-Vector Database
-
-&#x20;    ↓
-
+```text
 Job Description
-
-&#x20;    ↓
-
-Semantic Retrieval
-
-&#x20;    ↓
-
-Skill Matching
-
-&#x20;    ↓
-
-Match Score + AI Recommendations
-
+      │
+      ▼
+Multiple Candidate Resumes
+      │
+      ▼
+Resume ↔ Job Matching
+      │
+      ▼
+Candidate Scores
+      │
+      ▼
+Automatic Ranking
+      │
+      ▼
+Recruiter Dashboard
 ```
 
+---
 
+## 🛠️ Technologies Used
 
-\## 🛠️ Technologies Used
+| Technology     | Purpose                               |
+| -------------- | ------------------------------------- |
+| Python         | Core programming language             |
+| Streamlit      | Web application interface             |
+| LangChain      | LLM application framework             |
+| Ollama         | Local LLM execution                   |
+| ChromaDB       | Vector database                       |
+| PyTorch        | Machine learning / AI dependencies    |
+| ReportLab      | PDF generation                        |
+| Plotly         | Interactive charts                    |
+| PDF Processing | Resume and job-description extraction |
+| Git & GitHub   | Version control                       |
 
+---
 
+## 📊 Dashboard
 
-\* Python
+The application provides a modern dashboard containing:
 
-\* Streamlit
+* Overall Match Score
+* Required Skill Score
+* Preferred Skill Score
+* Skill Gap Count
+* Match Score Charts
+* Matched Skills
+* Missing Skills
+* AI Career Coach
+* Candidate Ranking
 
-\* LangChain
+---
 
-\* Ollama
+## 🚀 Installation
 
-\* ChromaDB
-
-\* FAISS
-
-\* Sentence Transformers
-
-\* Hugging Face
-
-\* Pandas
-
-\* NumPy
-
-\* Plotly
-
-\* PyPDF
-
-
-
-\## 📁 Project Structure
-
-
-
-```text
-
-ResumeJobMatchAI/
-
-│
-
-├── app.py
-
-├── app\_old.py
-
-├── requirements.txt
-
-├── README.md
-
-├── .gitignore
-
-│
-
-└── src/
-
-&#x20;   ├── analyzer.py
-
-&#x20;   ├── document\_loader.py
-
-&#x20;   ├── embeddings.py
-
-&#x20;   ├── job\_loader.py
-
-&#x20;   ├── job\_matcher.py
-
-&#x20;   ├── llm.py
-
-&#x20;   ├── match\_score.py
-
-&#x20;   ├── rag\_chain.py
-
-&#x20;   ├── recommendations.py
-
-&#x20;   ├── resume\_skill\_detector.py
-
-&#x20;   ├── resume\_skill\_extractor.py
-
-&#x20;   ├── retriever.py
-
-&#x20;   ├── skill\_database.py
-
-&#x20;   ├── skill\_extractor.py
-
-&#x20;   ├── skill\_matcher.py
-
-&#x20;   ├── text\_splitter.py
-
-&#x20;   └── vector\_store.py
-
-```
-
-
-
-\## ⚙️ Installation
-
-
-
-\### 1. Clone the repository
-
-
+### 1. Clone the repository
 
 ```bash
-
 git clone https://github.com/Sheminsharafudheen/ResumeJobMatchAI.git
-
 cd ResumeJobMatchAI
-
 ```
 
-
-
-\### 2. Create a virtual environment
-
-
+### 2. Create a virtual environment
 
 ```bash
-
 python -m venv venv
-
 ```
-
-
 
 Activate it on Windows:
 
-
-
 ```bash
-
-venv\\Scripts\\activate
-
+venv\Scripts\activate
 ```
 
-
-
-\### 3. Install dependencies
-
-
+### 3. Install dependencies
 
 ```bash
-
 pip install -r requirements.txt
-
 ```
 
+### 4. Install Ollama
 
+Download and install Ollama:
 
-\## 🤖 Ollama Setup
+https://ollama.com/
 
-
-
-This project uses Ollama for local LLM inference.
-
-
-
-Install Ollama and make sure it is running on your computer.
-
-
-
-Then pull the model required by your application. For example:
-
-
+Then pull the required model:
 
 ```bash
-
 ollama pull llama3
-
 ```
 
+Make sure Ollama is running before using the application.
 
+---
 
-The exact model should match the model configured in `src/llm.py`.
+## ▶️ Run the Application
 
-
-
-\## ▶️ Run the Application
-
-
-
-From the project directory:
-
-
+Start Streamlit with:
 
 ```bash
-
-streamlit run app.py
-
+python -m streamlit run app.py
 ```
 
+Then open:
 
+```text
+http://localhost:8501
+```
 
-The application will open in your browser.
+---
 
+## 📁 Project Structure
 
+```text
+ResumeJobMatchAI/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+│
+├── src/
+│   ├── analyzer.py
+│   └── ...
+│
+├── data/
+│   └── ...
+│
+└── ...
+```
 
-\## 🎯 Use Case
+---
 
+## 🎯 Example Use Case
 
+A job seeker can:
 
-\### 👤 Job Seekers
+1. Upload their resume.
+2. Paste an AI/ML Engineer job description.
+3. Run the analysis.
+4. Receive an overall match score.
+5. See which required skills are already present.
+6. Identify missing skills.
+7. Get personalized recommendations for improving their resume and skills.
 
+A recruiter can:
 
+1. Upload a job description.
+2. Upload multiple candidate resumes.
+3. Run candidate analysis.
+4. Compare candidate scores.
+5. Automatically identify the strongest candidates.
 
-\* Understand how well their resume matches a job
+---
 
-\* Find missing skills
+## 🔮 Future Improvements
 
-\* Identify skill gaps
+* [ ] Resume improvement suggestions
+* [ ] ATS compatibility analysis
+* [ ] Resume keyword optimization
+* [ ] Downloadable PDF analysis reports
+* [ ] Candidate history and analytics
+* [ ] Job recommendation system
+* [ ] Resume-to-multiple-job comparison
+* [ ] Cloud deployment
+* [ ] Authentication and user accounts
+* [ ] Advanced semantic similarity scoring
 
-\* Get AI-powered recommendations
+---
 
-\* Improve their resume according to job requirements
+## ⚠️ Disclaimer
 
+ResumeJobMatchAI is an AI-assisted career tool. Match scores and recommendations should be used as guidance and should not be treated as the sole basis for hiring decisions.
 
+---
 
-\### 🏢 Recruiters
+## 👨‍💻 Author
 
+**Shemin T.S**
 
+BCA — Artificial Intelligence & Machine Learning
 
-\* Compare candidates with job requirements
+GitHub:
+https://github.com/Sheminsharafudheen
 
-\* Identify relevant skills
+---
 
-\* Analyze candidate-job compatibility
+## ⭐ If You Find This Project Useful
 
-\* Rank candidates based on matching criteria
+Give the repository a ⭐ on GitHub!
 
-
-
-\## 🔮 Future Improvements
-
-
-
-\* Resume improvement suggestions
-
-\* Multiple resume comparison
-
-\* Multiple candidate ranking
-
-\* ATS compatibility analysis
-
-\* Cloud deployment
-
-\* Authentication
-
-\* Job recommendation system
-
-\* Advanced LLM evaluation
-
-\* Support for multiple LLM providers
-
-
-
-\## 👨‍💻 Author
-
-
-
-\*\*Shemin T.S\*\*
-
-
-
-BCA – Artificial Intelligence \& Machine Learning
-
-
-
-GitHub: https://github.com/Sheminsharafudheen
-
-
-
+**ResumeJobMatchAI — Know your match. Close your skill gaps. Get hired. 🚀**
