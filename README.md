@@ -125,6 +125,19 @@ The application provides a modern dashboard containing:
 
 ---
 
+## 📸 Application Screenshots
+
+### 🏠 Home Page
+
+![ResumeJobMatchAI Home Page](screenshots/home.png)
+
+### 👤 Job Seeker Mode
+
+![Job Seeker Analysis](screenshots/job-seeker.png)
+
+### 🏢 Recruiter Mode
+
+![Recruiter Candidate Ranking](screenshots/recruiter.png)
 ## 🚀 Installation
 
 ### 1. Clone the repository
