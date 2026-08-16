@@ -1,20 +1,22 @@
-from langchain_ollama import OllamaLLM
+import os
+from dotenv import load_dotenv
+from langchain_google_genai import ChatGoogleGenerativeAI
+
+load_dotenv()
 
 
 def create_llm():
-    llm = OllamaLLM(
-        model="llama3.2:latest"
+    return ChatGoogleGenerativeAI(
+        model="gemini-2.5-flash",
+        google_api_key=os.getenv("GOOGLE_API_KEY"),
+        temperature=0
     )
-
-    return llm
 
 
 if __name__ == "__main__":
     llm = create_llm()
 
-    question = "What is machine learning?"
+    response = llm.invoke("Say hello")
 
-    response = llm.invoke(question)
-
-    print("LLM Response:")
-    print(response)
+    print("Gemini Response:")
+    print(response.content)
