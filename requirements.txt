@@ -14,3 +14,4 @@ langchain-google-genai
 langchain-huggingface
 langchain-text-splitters
 reportlab==5.0.0
+torchvision
