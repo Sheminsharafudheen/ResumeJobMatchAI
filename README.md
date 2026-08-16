@@ -139,7 +139,7 @@ The home page allows users to choose between **Job Seeker** and **Recruiter** mo
 
 Job seekers can upload their resume and job description to receive a detailed match analysis, skill-gap insights, and AI-powered recommendations.
 
-![Job Seeker Analysis](screenshots/job-seeker.png)
+![Job Seeker Analysis](screenshots/job_seeker.png)
 
 ### 🏢 Recruiter Mode
 
